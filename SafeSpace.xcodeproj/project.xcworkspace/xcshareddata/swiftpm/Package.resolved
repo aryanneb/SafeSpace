@@ -1,13 +1,12 @@
 {
-  "originHash" : "6091ebc320a225d5fe7862b574ab1217a61529251e2a07b8a8706f5026533bb1",
+  "originHash" : "107746828b6cf1ce811b400fa004379f3ee2180bad913f8ec8e40d8ade754ba8",
   "pins" : [
     {
       "identity" : "llama.cpp",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ggerganov/llama.cpp.git",
+      "location" : "https://github.com/ggerganov/llama.cpp/",
       "state" : {
-        "branch" : "master",
-        "revision" : "55ac8c7791ff44aeb82bd7fe3ca2041844fc77f1"
+        "revision" : "dbceec87c0221ec952e69448df6a71f1372a7487"
       }
     }
   ],

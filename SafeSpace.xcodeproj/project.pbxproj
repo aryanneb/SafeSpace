@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		315EF4AF2D5AB4F800E25F2D /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = 315EF4AE2D5AB4F800E25F2D /* LLM */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		31A8C7932D580105002896D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -35,16 +39,6 @@
 			path = SafeSpace;
 			sourceTree = "<group>";
 		};
-		31A8C7952D580105002896D7 /* SafeSpaceTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SafeSpaceTests;
-			sourceTree = "<group>";
-		};
-		31A8C79F2D580105002896D7 /* SafeSpaceUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SafeSpaceUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				315EF4AF2D5AB4F800E25F2D /* LLM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				31A8C7842D580104002896D7 /* SafeSpace */,
-				31A8C7952D580105002896D7 /* SafeSpaceTests */,
-				31A8C79F2D580105002896D7 /* SafeSpaceUITests */,
 				31A8C7832D580104002896D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +105,7 @@
 			);
 			name = SafeSpace;
 			packageProductDependencies = (
+				315EF4AE2D5AB4F800E25F2D /* LLM */,
 			);
 			productName = SafeSpace;
 			productReference = 31A8C7822D580104002896D7 /* SafeSpace.app */;
@@ -129,9 +123,6 @@
 			);
 			dependencies = (
 				31A8C7942D580105002896D7 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				31A8C7952D580105002896D7 /* SafeSpaceTests */,
 			);
 			name = SafeSpaceTests;
 			packageProductDependencies = (
@@ -152,9 +143,6 @@
 			);
 			dependencies = (
 				31A8C79E2D580105002896D7 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				31A8C79F2D580105002896D7 /* SafeSpaceUITests */,
 			);
 			name = SafeSpaceUITests;
 			packageProductDependencies = (
@@ -196,7 +184,7 @@
 			mainGroup = 31A8C7792D580104002896D7;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				31A8C7BF2D580F5B002896D7 /* XCRemoteSwiftPackageReference "llama.cpp" */,
+				315EF4AD2D5AB4F800E25F2D /* XCLocalSwiftPackageReference "../../../Downloads/LLM.swift-1.5.3" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 31A8C7832D580104002896D7 /* Products */;
@@ -564,16 +552,19 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		31A8C7BF2D580F5B002896D7 /* XCRemoteSwiftPackageReference "llama.cpp" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ggerganov/llama.cpp.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		315EF4AD2D5AB4F800E25F2D /* XCLocalSwiftPackageReference "../../../Downloads/LLM.swift-1.5.3" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../Downloads/LLM.swift-1.5.3";
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		315EF4AE2D5AB4F800E25F2D /* LLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LLM;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 31A8C77A2D580104002896D7 /* Project object */;
 }
