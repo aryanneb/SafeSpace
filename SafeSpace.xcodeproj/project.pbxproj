@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3133ABD22D61250E007CEF2E /* llmfarm_core in Frameworks */ = {isa = PBXBuildFile; productRef = 3133ABD12D61250E007CEF2E /* llmfarm_core */; };
 		315EF4AF2D5AB4F800E25F2D /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = 315EF4AE2D5AB4F800E25F2D /* LLM */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				315EF4AF2D5AB4F800E25F2D /* LLM in Frameworks */,
+				3133ABD22D61250E007CEF2E /* llmfarm_core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +108,7 @@
 			name = SafeSpace;
 			packageProductDependencies = (
 				315EF4AE2D5AB4F800E25F2D /* LLM */,
+				3133ABD12D61250E007CEF2E /* llmfarm_core */,
 			);
 			productName = SafeSpace;
 			productReference = 31A8C7822D580104002896D7 /* SafeSpace.app */;
@@ -184,7 +187,7 @@
 			mainGroup = 31A8C7792D580104002896D7;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				315EF4AD2D5AB4F800E25F2D /* XCLocalSwiftPackageReference "../../../Downloads/LLM.swift-1.5.3" */,
+				3133ABD02D61250E007CEF2E /* XCRemoteSwiftPackageReference "llmfarm_core" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 31A8C7832D580104002896D7 /* Products */;
@@ -552,14 +555,23 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		315EF4AD2D5AB4F800E25F2D /* XCLocalSwiftPackageReference "../../../Downloads/LLM.swift-1.5.3" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../Downloads/LLM.swift-1.5.3";
+/* Begin XCRemoteSwiftPackageReference section */
+		3133ABD02D61250E007CEF2E /* XCRemoteSwiftPackageReference "llmfarm_core" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/guinmoon/llmfarm_core.swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3133ABD12D61250E007CEF2E /* llmfarm_core */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3133ABD02D61250E007CEF2E /* XCRemoteSwiftPackageReference "llmfarm_core" */;
+			productName = llmfarm_core;
+		};
 		315EF4AE2D5AB4F800E25F2D /* LLM */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LLM;
