@@ -12,6 +12,7 @@ struct ContentView: View {
     @StateObject private var viewModel = AIModelViewModel()
     @State private var inputText = ""
     @State private var outputText = ""
+    @State private var showCopyConfirmation = false
     
     var body: some View {
         VStack {
@@ -19,25 +20,67 @@ struct ContentView: View {
                 Text(outputText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
+                    .foregroundColor(.white)
+                    .background(Color(hex: "#002804"))
+            }
+            .background(Color(hex: "#002804"))
+            
+            // Control Buttons
+            if !outputText.isEmpty && !viewModel.isProcessing {
+                HStack(spacing: 20) {
+                    Button(action: continueGenerating) {
+                        Text("Continue Generating")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color(hex: "#005909"))
+                            .cornerRadius(10)
+                    }
+                    
+                    Button(action: copyOutput) {
+                        Text("Copy Output")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color(hex: "#005909"))
+                            .cornerRadius(10)
+                    }
+                }
+                .padding(.horizontal)
             }
             
             if viewModel.isProcessing {
                 ProgressView()
                     .padding()
             }
-            HStack {
-                TextField("Ask me anything...", text: $inputText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            HStack(alignment: .bottom) {
+                TextField("Ask AI...", text: $inputText, axis: .vertical)
+                    .lineLimit(1...5)
+                    .textFieldStyle(.plain)
+                    .padding(10)
+                    .foregroundColor(.white)
+                    .background(Color(hex: "#333333"))
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(hex: "#005909"), lineWidth: 1)
+                    )
                     .disabled(!viewModel.isModelLoaded)
+                    .frame(minHeight: 40) 
+                    .tint(.white)
                 
                 Button(action: askQuestion) {
                     Text("Ask")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color(hex: "#005909"))
+                        .cornerRadius(10)
                 }
                 .disabled(!viewModel.isModelLoaded || viewModel.isProcessing)
             }
             .padding()
         }
         .padding()
+        .background(Color(hex: "#002804"))
         .onAppear {
             viewModel.loadModel()
         }
@@ -45,6 +88,9 @@ struct ContentView: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text(viewModel.errorMessage)
+        }
+        .alert("Copied!", isPresented: $showCopyConfirmation) {
+            Button("OK", role: .cancel) { }
         }
     }
     
@@ -54,93 +100,18 @@ struct ContentView: View {
             outputText += response
         }
     }
-}
-
-class AIModelViewModel: ObservableObject {
-    @Published var isModelLoaded = false
-    @Published var isProcessing = false
-    @Published var showError = false
-    @Published var errorMessage = ""
     
-    private var ai: AI?
-    private let maxOutputLength = 512
-    
-    
-    init() {
-        // Initialize model parameters
-        var params = ModelAndContextParams.default
-        params.promptFormat = .Custom
-        params.custom_prompt_format = """
-        <|start_header_id|>system<|end_header_id|>
-        You are a helpful AI assistant.<|eot_id|>
-        <|start_header_id|>user<|end_header_id|>
-        {prompt}<|eot_id|>
-        <|start_header_id|>assistant<|end_header_id|>
-        """
-        params.use_metal = true
-        
-        // Get model path
-        guard let modelPath = Bundle.main.path(forResource: "Llama-3.2-3B-Instruct-Q6_K_L", ofType: "gguf") else {
-            showError(message: "Model file not found in bundle")
-            return
-        }
-        
-        // Initialize AI model
-        ai = AI(_modelPath: modelPath, _chatName: "chat")
-        ai?.initModel(ModelInference.LLama_gguf, contextParams: params)
-        
-        // Configure sampling parameters
-        ai?.model?.sampleParams.mirostat = 2
-        ai?.model?.sampleParams.mirostat_eta = 0.1
-        ai?.model?.sampleParams.mirostat_tau = 5.0
-    }
-    
-    func loadModel() {
-        do {
-            try ai?.loadModel_sync()
-            isModelLoaded = true
-        } catch {
-            showError(message: "Failed to load model: \(error.localizedDescription)")
+    private func continueGenerating() {
+        viewModel.ask(prompt: inputText + outputText) { response in
+            outputText += response
         }
     }
     
-    func ask(prompt: String, responseHandler: @escaping (String) -> Void) {
-        guard isModelLoaded else { return }
-        
-        isProcessing = true
-        DispatchQueue.global(qos: .userInitiated).async {
-            var totalOutput = 0
-            let callback: (String, Double) -> Bool = { str, _ in
-                DispatchQueue.main.async {
-                    responseHandler(str)
-                    totalOutput += str.count
-                }
-                return totalOutput > self.maxOutputLength
-            }
-            
-            do {
-                try self.ai?.model?.Predict(prompt, callback)
-            } catch {
-                self.showError(message: "Prediction failed: \(error.localizedDescription)")
-            }
-            
-            DispatchQueue.main.async {
-                self.isProcessing = false
-            }
-        }
-    }
-    
-    private func showError(message: String) {
-        DispatchQueue.main.async {
-            self.errorMessage = message
-            self.showError = true
-            self.isModelLoaded = false
-            self.isProcessing = false
-        }
+    private func copyOutput() {
+        UIPasteboard.general.string = outputText
+        showCopyConfirmation = true
     }
 }
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
