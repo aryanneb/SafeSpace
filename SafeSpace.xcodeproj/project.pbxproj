@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3133ABD22D61250E007CEF2E /* llmfarm_core in Frameworks */ = {isa = PBXBuildFile; productRef = 3133ABD12D61250E007CEF2E /* llmfarm_core */; };
-		315EF4AF2D5AB4F800E25F2D /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = 315EF4AE2D5AB4F800E25F2D /* LLM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +46,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				315EF4AF2D5AB4F800E25F2D /* LLM in Frameworks */,
 				3133ABD22D61250E007CEF2E /* llmfarm_core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,7 +105,6 @@
 			);
 			name = SafeSpace;
 			packageProductDependencies = (
-				315EF4AE2D5AB4F800E25F2D /* LLM */,
 				3133ABD12D61250E007CEF2E /* llmfarm_core */,
 			);
 			productName = SafeSpace;
@@ -571,10 +568,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3133ABD02D61250E007CEF2E /* XCRemoteSwiftPackageReference "llmfarm_core" */;
 			productName = llmfarm_core;
-		};
-		315EF4AE2D5AB4F800E25F2D /* LLM */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LLM;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
