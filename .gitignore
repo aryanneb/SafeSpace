@@ -1,0 +1,2 @@
+# Ignore .gguf files project-wide
+**/*.gguf
