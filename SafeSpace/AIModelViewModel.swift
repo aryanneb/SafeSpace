@@ -61,6 +61,7 @@ class AIModelViewModel: ObservableObject {
     
     func ask(prompt: String, responseHandler: @escaping (String) -> Void) {
         guard isModelLoaded else { return }
+        print("Prompt: \(prompt)")
         
         isProcessing = true
         DispatchQueue.global(qos: .userInitiated).async {

@@ -20,67 +20,78 @@ struct ContentView: View {
                 Text(outputText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
-                    .foregroundColor(.white)
-                    .background(Color(hex: "#002804"))
+                    .foregroundColor(Color(hex: "#1D2E0F"))
+                    .background(Color(hex: "#FBF1DA"))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(hex: "#B3DA95"), lineWidth: 1)
+                    )
             }
-            .background(Color(hex: "#002804"))
+            .background(Color(hex: "#FBF1DA"))
             
             // Control Buttons
             if !outputText.isEmpty && !viewModel.isProcessing {
-                HStack(spacing: 20) {
+                HStack(spacing: 10) {
                     Button(action: continueGenerating) {
-                        Text("Continue Generating")
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color(hex: "#005909"))
+                        Text("Generate More")
+                            .foregroundColor(Color(hex: "#1D2E0F"))
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(Color(hex: "#B3DA95"))
                             .cornerRadius(10)
                     }
                     
                     Button(action: copyOutput) {
                         Text("Copy Output")
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color(hex: "#005909"))
+                            .foregroundColor(Color(hex: "#1D2E0F"))
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(Color(hex: "#B3DA95"))
                             .cornerRadius(10)
                     }
                 }
                 .padding(.horizontal)
+                .padding(.vertical, 0)
             }
             
             if viewModel.isProcessing {
                 ProgressView()
                     .padding()
+                    .tint(Color(hex: "#1D2E0F"))
             }
             
-            HStack(alignment: .bottom) {
-                TextField("Ask AI...", text: $inputText, axis: .vertical)
+            HStack(alignment: .center) {
+                TextField("Ask me anything...", text: $inputText, axis: .vertical)
                     .lineLimit(1...5)
                     .textFieldStyle(.plain)
-                    .padding(10)
-                    .foregroundColor(.white)
-                    .background(Color(hex: "#333333"))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 10)
+                    .foregroundColor(Color(hex: "#1D2E0F"))
+                    .background(Color(hex: "#FBF1DA"))
                     .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color(hex: "#005909"), lineWidth: 1)
+                            .stroke(Color(hex: "#B3DA95"), lineWidth: 1)
                     )
                     .disabled(!viewModel.isModelLoaded)
-                    .frame(minHeight: 40) 
-                    .tint(.white)
+                    .frame(height: 36)
+                    .tint(Color(hex: "#1D2E0F"))
                 
                 Button(action: askQuestion) {
                     Text("Ask")
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color(hex: "#005909"))
+                        .foregroundColor(Color(hex: "#1D2E0F"))
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(Color(hex: "#B3DA95"))
                         .cornerRadius(10)
                 }
+                .frame(height: 36)
                 .disabled(!viewModel.isModelLoaded || viewModel.isProcessing)
             }
             .padding()
         }
         .padding()
-        .background(Color(hex: "#002804"))
+        .background(Color(hex: "#FBF1DA"))
         .onAppear {
             viewModel.loadModel()
         }
@@ -102,7 +113,7 @@ struct ContentView: View {
     }
     
     private func continueGenerating() {
-        viewModel.ask(prompt: inputText + outputText) { response in
+        viewModel.ask(prompt: inputText) { response in
             outputText += response
         }
     }
