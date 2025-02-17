@@ -100,8 +100,8 @@ struct ContentView: View {
         } message: {
             Text(viewModel.errorMessage)
         }
-        .alert("Copied!", isPresented: $showCopyConfirmation) {
-            Button("OK", role: .cancel) { }
+        .alert("Copied to Clipboard!", isPresented: $showCopyConfirmation) {
+            Button("Continue", role: .cancel) { }
         }
     }
     
