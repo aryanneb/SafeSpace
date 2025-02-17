@@ -106,25 +106,32 @@ public class ChatViewModel: ObservableObject {
 public struct ChatInputField: View {
     @ObservedObject var viewModel: ChatViewModel
     let isEnabled: Bool
+    let characterLimit = 100
     
     public var body: some View {
         HStack(alignment: .center) {
-            TextField("Ask me anything...", text: $viewModel.inputText, axis: .vertical)
-                .lineLimit(1...5)
-                .textFieldStyle(.plain)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 10)
-                .foregroundColor(Color(hex: "#1D2E0F"))
-                .background(Color(hex: "#FBF1DA"))
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color(hex: "#B3DA95"), lineWidth: 1)
-                )
-                .disabled(!isEnabled)
-                .frame(height: 36)
-                .tint(Color(hex: "#1D2E0F"))
-                .onSubmit(viewModel.askQuestion)
+            TextField("Ask me anything...", text: Binding(
+                get: { viewModel.inputText },
+                set: { newValue in
+                    viewModel.inputText = String(newValue.prefix(characterLimit))
+                }
+            ))
+            .lineLimit(1) // Force single line
+            .truncationMode(.tail) // Horizontal truncation
+            .textFieldStyle(.plain)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 10)
+            .foregroundColor(Color(hex: "#1D2E0F"))
+            .background(Color(hex: "#FBF1DA"))
+            .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color(hex: "#B3DA95"), lineWidth: 1)
+            )
+            .disabled(!isEnabled)
+            .frame(height: 36)
+            .tint(Color(hex: "#1D2E0F"))
+            .onSubmit(viewModel.askQuestion)
             
             ActionButton(title: "Ask", action: viewModel.askQuestion)
                 .frame(height: 36)

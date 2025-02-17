@@ -36,6 +36,8 @@ struct MessageBubble: View {
                 
                 Text(message.content)
                     .foregroundColor(Color(hex: "#1D2E0F"))
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 8)
                     .background(
