@@ -15,7 +15,7 @@ class AIModelViewModel: ObservableObject {
     @Published var errorMessage = ""
     
     private var ai: AI?
-    private let maxOutputLength = 1024
+    private let maxOutputLength = 512
     
     
     init() {
@@ -62,6 +62,8 @@ class AIModelViewModel: ObservableObject {
     func ask(prompt: String, responseHandler: @escaping (String) -> Void) {
         guard isModelLoaded else { return }
         print("Prompt: \(prompt)")
+        print("Prompt length: \(prompt.count) characters")
+
         
         isProcessing = true
         DispatchQueue.global(qos: .userInitiated).async {
