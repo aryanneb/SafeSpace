@@ -54,8 +54,8 @@ SafeSpace takes your privacy seriously:
 
 SafeSpace is built using:
 - SwiftUI for the user interface
-- Currently [LLAMA 3.2:3B]([url](https://huggingface.co/meta-llama/Llama-3.2-3B)) as the LLM in the [gguf format]([url](https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF)).
-- [LLMFarm]([url](https://github.com/guinmoon/llmfarm_core.swift))
+- Currently [Llama-3.2-3B](https://huggingface.co/meta-llama/Llama-3.2-3B) as the LLM in the [gguf format](https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF).
+- [LLMFarm](https://github.com/guinmoon/llmfarm_core.swift) as the tool for interacting with the LLM.
 
 ## Getting Started
 
