@@ -60,10 +60,20 @@ SafeSpace is built using:
 
 ## Getting Started
 
+Currently in development for App Store release. Future features planned:
+- Custom chat themes and UI personalization
+- Conversation categories and organization
+- Offline resource library
+- Accessibility improvements
+- Enhanced privacy features
+
+For developers:
 1. Clone this repository and open the SafeSpace.xcodeproj file in Xcode
 2. Launch the app (no setup or account required)
 3. Start chatting with your AI companion
 4. Use the copy feature to save important conversations
+
+The goal is to publish SafeSpace on the App Store once core features are implemented and thoroughly tested. Contributions and feature suggestions are welcome!
 
 ## Contributing
 
