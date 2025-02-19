@@ -7,15 +7,17 @@ Last Updated: 2024-02-17
 - [ ] Find a way to make the field of view stay at the bottom of the chat history.
 
 ## Bug Fixes
-- [ ] Reduce buggy performance as the conversation gets longe
+- [ ] Reduce buggy performance as the conversation gets longer
 
 ## Future Enhancements
 - [ ] Allow users to download different AI models
 - [ ] Allow users to change the AI model
   
 ## Documentation
-- [ ] Add a README.md file
+
 
 
 ---
 ### Completed Items
+- [X] Add a README.md file
+- [X] Add a TODO.md file
