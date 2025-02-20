@@ -109,34 +109,56 @@ public struct ChatInputField: View {
     let characterLimit = 100
     
     public var body: some View {
-        HStack(alignment: .center) {
+        ZStack {
             TextField("Ask me anything...", text: Binding(
                 get: { viewModel.inputText },
                 set: { newValue in
                     viewModel.inputText = String(newValue.prefix(characterLimit))
                 }
             ))
-            .lineLimit(1) // Force single line
-            .truncationMode(.tail) // Horizontal truncation
+            .lineLimit(1)
+            .truncationMode(.tail)
             .textFieldStyle(.plain)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 10)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .padding(.trailing, 60) 
             .foregroundColor(Color(hex: "#1D2E0F"))
             .background(Color(hex: "#FBF1DA"))
-            .cornerRadius(8)
+            .cornerRadius(16)
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 16)
                     .stroke(Color(hex: "#B3DA95"), lineWidth: 1)
             )
             .disabled(!isEnabled)
+            .frame(maxWidth: .infinity)
             .frame(height: 36)
             .tint(Color(hex: "#1D2E0F"))
             .onSubmit(viewModel.askQuestion)
             
-            ActionButton(title: "Ask", action: viewModel.askQuestion)
-                .frame(height: 36)
+            // Ask button positioned inside the text field
+            HStack {
+                Spacer()
+                Button(action: viewModel.askQuestion) {
+                    Text("Ask")
+                        .foregroundColor(Color(hex: "#1D2E0F"))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(
+                            viewModel.inputText.isEmpty ?
+                            Color(hex: "#FBF1DA") :
+                            Color(hex: "#B3DA95")
+                        )
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color(hex: "#B3DA95"), lineWidth: 1)
+                        )
+                }
                 .disabled(!isEnabled)
+                .padding(.trailing, 8)
+            }
         }
+        .padding(.horizontal)
     }
 }
 
