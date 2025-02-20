@@ -19,7 +19,7 @@ struct ChatSpace: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 2) {
             ChatMessageList(messages: chatViewModel.messages)
                 .background(Color(hex: "#FBF1DA"))
             

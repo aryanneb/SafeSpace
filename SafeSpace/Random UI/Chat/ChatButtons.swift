@@ -121,7 +121,7 @@ public struct ChatInputField: View {
             .textFieldStyle(.plain)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .padding(.trailing, 60) 
+            .padding(.trailing, 56)
             .foregroundColor(Color(hex: "#1D2E0F"))
             .background(Color(hex: "#FBF1DA"))
             .cornerRadius(16)
@@ -135,27 +135,32 @@ public struct ChatInputField: View {
             .tint(Color(hex: "#1D2E0F"))
             .onSubmit(viewModel.askQuestion)
             
-            // Ask button positioned inside the text field
+            // Arrow button positioned inside the text field
             HStack {
                 Spacer()
                 Button(action: viewModel.askQuestion) {
-                    Text("Ask")
-                        .foregroundColor(Color(hex: "#1D2E0F"))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(
+                    Image(systemName: "arrow.up.circle.fill")
+                        .font(.system(size: 28))
+                        .foregroundColor(
                             viewModel.inputText.isEmpty ?
-                            Color(hex: "#FBF1DA") :
+                            Color(hex: "#fbf1da") :
                             Color(hex: "#B3DA95")
                         )
-                        .cornerRadius(12)
+                        .background(
+                            Circle()
+                                .fill(
+                                    viewModel.inputText.isEmpty ? 
+                                    Color(hex: "#B3DA95") :
+                                    Color(hex: "#fbf1da")
+                                )
+                        )
                         .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color(hex: "#B3DA95"), lineWidth: 1)
+                            Circle()
+                                .stroke(Color(hex: "#B3DA95"), lineWidth: 0.5)
                         )
                 }
                 .disabled(!isEnabled)
-                .padding(.trailing, 8)
+                .padding(.trailing, 16)
             }
         }
         .padding(.horizontal)
@@ -171,6 +176,6 @@ public struct ChatControlButtons: View {
             ActionButton(title: "Copy Output", action: viewModel.copyOutput)
         }
         .padding(.horizontal)
-        .padding(.vertical, 8)
+        .padding(.vertical, 4)
     }
 } 
