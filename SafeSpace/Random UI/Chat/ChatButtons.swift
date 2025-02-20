@@ -140,7 +140,7 @@ public struct ChatInputField: View {
                 Spacer()
                 Button(action: viewModel.askQuestion) {
                     Image(systemName: "arrow.up.circle.fill")
-                        .font(.system(size: 28))
+                        .font(.system(size: viewModel.inputText.isEmpty ? 28 : 32))
                         .foregroundColor(
                             viewModel.inputText.isEmpty ?
                             Color(hex: "#fbf1da") :
@@ -154,13 +154,9 @@ public struct ChatInputField: View {
                                     Color(hex: "#fbf1da")
                                 )
                         )
-                        .overlay(
-                            Circle()
-                                .stroke(Color(hex: "#B3DA95"), lineWidth: 0.5)
-                        )
                 }
                 .disabled(!isEnabled)
-                .padding(.trailing, 16)
+                .padding(.trailing, viewModel.inputText.isEmpty ? 16 : 14)
             }
         }
         .padding(.horizontal)
