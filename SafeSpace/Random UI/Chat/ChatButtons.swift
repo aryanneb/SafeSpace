@@ -40,6 +40,8 @@ public class ChatViewModel: ObservableObject {
         
         // Clear all previous messages and reset context
         messages.removeAll()
+        
+        aiModel.resetModel()
 
         // Add the new user message
         let userMessage = Message(content: inputText, isUser: true)

@@ -102,4 +102,11 @@ class AIModelViewModel: ObservableObject {
             self.isProcessing = false
         }
     }
+    func resetModel() {
+        // resetting model for asks.
+        guard let modelPath = Bundle.main.path(forResource: "Llama-3.2-3B-Instruct-Q6_K_L", ofType: "gguf") else {
+            showError(message: "Model file not found in bundle")
+            return
+        }
+    }
 }
