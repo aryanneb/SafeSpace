@@ -11,7 +11,6 @@ Last Updated: 2024-02-17
 - [ ] Fix the "User" text placement to be better.
 
 ## Bug Fixes
-- [ ] Reduce buggy performance as the conversation gets longer
 
 ## Future Enhancements
 - [ ] Allow users to download different AI models
@@ -28,3 +27,4 @@ Last Updated: 2024-02-17
 - [X] Add a README.md file
 - [X] Add a TODO.md file
 - [X] Enhance system prompt to create a more empathetic and insightful AI companion focused on emotional support and guidance
+- [X] Reduce buggy performance as the conversation gets longer
