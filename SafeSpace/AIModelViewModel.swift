@@ -80,6 +80,10 @@ class AIModelViewModel: ObservableObject {
             
             do {
                 try self.ai?.model?.Predict(prompt, callback)
+                if let model = self.ai?.model, model.nPast >= model.contextParams.context - 2 {
+                    print("Context window nearing limit. Performing KVShift...")
+                    try model.KVShift()
+                }
             } catch {
                 self.showError(message: "Prediction failed: \(error.localizedDescription)")
             }
