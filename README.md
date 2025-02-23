@@ -48,7 +48,6 @@ SafeSpace takes your privacy seriously:
 - **Daily Companion**: Have meaningful conversations anytime
 - **Brainstorming Partner**: Bounce ideas off an intelligent system
 - **Learning Tool**: Explore topics and get explanations privately
-- **Emergency Situations**: Get advice when you're offline or in remote areas
 
 ## Technical Details
 

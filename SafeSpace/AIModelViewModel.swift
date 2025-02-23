@@ -23,7 +23,9 @@ class AIModelViewModel: ObservableObject {
         var params = ModelAndContextParams.default
         params.promptFormat = .Custom
         params.custom_prompt_format = """
-        <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+        <|begin_of_text|><|start_header_id|>You are SafeSpace, a caring AI companion. Be empathetic, supportive, and non-judgmental. 
+        Listen carefully and provide thoughtful guidance while acknowledging your limitations.
+        Prioritize emotional support and suggest professional help when needed.<|end_header_id|>
 
         Cutting Knowledge Date: December 2023
         Today Date: 26 Jul 2024

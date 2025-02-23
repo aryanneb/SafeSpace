@@ -16,7 +16,10 @@ Last Updated: 2024-02-17
 ## Future Enhancements
 - [ ] Allow users to download different AI models
 - [ ] Allow users to change the AI model
-  
+
+## General Improvements
+
+
 ## Documentation
 
 ---
@@ -24,3 +27,4 @@ Last Updated: 2024-02-17
 - [X] Embed ask button in the chat input field
 - [X] Add a README.md file
 - [X] Add a TODO.md file
+- [X] Enhance system prompt to create a more empathetic and insightful AI companion focused on emotional support and guidance
