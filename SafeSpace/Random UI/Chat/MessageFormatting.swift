@@ -23,11 +23,12 @@ struct MessageBubble: View {
     let message: Message
     
     var body: some View {
-        VStack(alignment: message.isUser ? .trailing : .leading, spacing: 0) {
+        VStack(alignment: message.isUser ? .trailing : .leading) {
             Text(message.isUser ? "User" : "AI")
                 .font(.system(size: 8))
                 .foregroundColor(Color(hex: "#1D2E0F"))
                 .opacity(0.7)
+                .padding(.horizontal, message.isUser ? 14 : 0)
             
             HStack {
                 if message.isUser {
@@ -44,7 +45,7 @@ struct MessageBubble: View {
                         message.isUser ? Color(hex: "#B3DA95") : Color(hex: "#FBF1DA")
                     )
                     .cornerRadius(16)
-                    .padding(.horizontal, 8)
+                    .padding(.horizontal, 4)
                 
                 if !message.isUser {
                     Spacer()

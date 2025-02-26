@@ -7,8 +7,6 @@ Last Updated: 2024-02-17
 - [ ] Add haptic feedback for key interactions
 - [ ] Add message timestamps
 - [ ] Create a better loading animation for the AI responses
-- [ ] Fix the "AI" text placement to be better.
-- [ ] Fix the "User" text placement to be better.
 
 ## Bug Fixes
 
@@ -17,14 +15,17 @@ Last Updated: 2024-02-17
 - [ ] Allow users to change the AI model
 
 ## General Improvements
-
+- [ ] Add a settings button to the main interface for user configuration options
+- [ ] Integrate "Generate More" functionality directly into the text input area
+- [ ] Create a floating action button or gesture to trigger "Generate More" within the chat interface
+- [ ] Move "Copy" functionality to a long-press context menu on messages
+- [ ] Implement a settings page with model configuration options
 
 ## Documentation
 
 ---
 ### Completed Items
-- [X] Embed ask button in the chat input field
-- [X] Add a README.md file
-- [X] Add a TODO.md file
 - [X] Enhance system prompt to create a more empathetic and insightful AI companion focused on emotional support and guidance
 - [X] Reduce buggy performance as the conversation gets longer
+- [X] Fix the "AI" text placement to be better.
+- [X] Fix the "User" text placement to be better.
