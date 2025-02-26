@@ -28,7 +28,7 @@ struct MessageBubble: View {
                 .font(.system(size: 8))
                 .foregroundColor(Color(hex: "#1D2E0F"))
                 .opacity(0.7)
-                .padding(.horizontal, message.isUser ? 14 : 0)
+                .padding(.horizontal, message.isUser ? 14 : 14)
             
             HStack {
                 if message.isUser {
