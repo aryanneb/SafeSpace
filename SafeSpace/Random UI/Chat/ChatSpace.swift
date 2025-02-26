@@ -28,9 +28,9 @@ struct ChatSpace: View {
             }
             
             if aiModel.isProcessing {
-                ProgressView()
-                    .padding()
-                    .tint(Color(hex: "#1D2E0F"))
+                LoadingCircleView()
+                    .frame(width: 50, height: 50)
+                    .padding(.bottom, 10)
             }
             
             ChatInputField(

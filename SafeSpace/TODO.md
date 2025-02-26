@@ -6,7 +6,6 @@ Last Updated: 2024-02-17
 - [ ] Find a way to make the field of view stay at the bottom of the chat history.
 - [ ] Add haptic feedback for key interactions
 - [ ] Add message timestamps
-- [ ] Create a better loading animation for the AI responses
 
 ## Bug Fixes
 
@@ -29,3 +28,4 @@ Last Updated: 2024-02-17
 - [X] Reduce buggy performance as the conversation gets longer
 - [X] Fix the "AI" text placement to be better.
 - [X] Fix the "User" text placement to be better.
+- [X] Create a better loading animation for the AI responses
