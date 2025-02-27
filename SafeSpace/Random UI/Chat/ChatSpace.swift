@@ -21,7 +21,7 @@ struct ChatSpace: View {
     var body: some View {
         VStack(spacing: 2) {
             ChatMessageList(messages: chatViewModel.messages)
-                .environmentObject(chatViewModel) // Pass the view model to enable context menu actions
+                .environmentObject(chatViewModel) 
                 .background(Color(hex: "#FBF1DA"))
             
             Spacer().frame(height: 10)

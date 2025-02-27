@@ -82,5 +82,3 @@ public struct ChatInputField: View {
         .padding(.horizontal)
     }
 }
-
-// Note: ChatControlButtons has been removed as it's no longer needed 
