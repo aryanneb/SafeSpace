@@ -83,15 +83,4 @@ public struct ChatInputField: View {
     }
 }
 
-public struct ChatControlButtons: View {
-    @ObservedObject var viewModel: ChatViewModel
-    
-    public var body: some View {
-        HStack(spacing: 10) {
-            ActionButton(title: "Generate More", action: viewModel.continueGenerating)
-            ActionButton(title: "Copy Output", action: viewModel.copyOutput)
-        }
-        .padding(.horizontal)
-        .padding(.vertical, 4)
-    }
-} 
+// Note: ChatControlButtons has been removed as it's no longer needed 

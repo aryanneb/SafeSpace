@@ -61,11 +61,13 @@ class AIModelViewModel: ObservableObject {
         }
     }
     
-    func ask(prompt: String, responseHandler: @escaping (String) -> Void) {
+    func ask(prompt: String, responseHandler: @escaping (String) -> Void, systemPrompt: String? = nil) {
         guard isModelLoaded else { return }
         print("Prompt: \(prompt)")
         print("Prompt length: \(prompt.count) characters")
-
+        if let systemPrompt = systemPrompt {
+            print("System prompt: \(systemPrompt)")
+        }
         
         isProcessing = true
         DispatchQueue.global(qos: .userInitiated).async {
@@ -79,7 +81,7 @@ class AIModelViewModel: ObservableObject {
             }
             
             do {
-                try self.ai?.model?.Predict(prompt, callback)
+                try self.ai?.model?.Predict(prompt, callback, system_prompt: systemPrompt)
                 if let model = self.ai?.model, model.nPast >= model.contextParams.context - 2 {
                     print("Context window nearing limit. Performing KVShift...")
                     try model.KVShift()
@@ -103,7 +105,7 @@ class AIModelViewModel: ObservableObject {
         }
     }
     func resetModel() {
-        // resetting model for asks.
+        // resetting model for clears.
         guard let modelPath = Bundle.main.path(forResource: "Llama-3.2-3B-Instruct-Q6_K_L", ofType: "gguf") else {
             showError(message: "Model file not found in bundle")
             return

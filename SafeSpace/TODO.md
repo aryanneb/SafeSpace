@@ -2,11 +2,6 @@
 
 Last Updated: 2024-02-17
 
-## UI Improvements
-- [ ] Find a way to make the field of view stay at the bottom of the chat history.
-- [ ] Add haptic feedback for key interactions
-- [ ] Add message timestamps
-
 ## Bug Fixes
 
 ## Future Enhancements

@@ -21,16 +21,15 @@ struct ChatSpace: View {
     var body: some View {
         VStack(spacing: 2) {
             ChatMessageList(messages: chatViewModel.messages)
+                .environmentObject(chatViewModel) // Pass the view model to enable context menu actions
                 .background(Color(hex: "#FBF1DA"))
             
-            if !chatViewModel.messages.isEmpty && !aiModel.isProcessing {
-                ChatControlButtons(viewModel: chatViewModel)
-            }
+            Spacer().frame(height: 10)
             
             if aiModel.isProcessing {
                 LoadingCircleView()
                     .frame(width: 50, height: 50)
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 20)
             }
             
             ChatInputField(
