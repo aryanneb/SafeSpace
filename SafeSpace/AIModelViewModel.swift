@@ -108,20 +108,20 @@ class AIModelViewModel: ObservableObject {
         }
     }
     func resetModel() {
-        // Reset the model by deinitializing and reinitializing
         isProcessing = true
         
-        // Deinitialize the current model
-        ai?.model?.destroy_objects()
-        ai = nil
-        
-        // Get model path
-        guard let modelPath = Bundle.main.path(forResource: "Llama-3.2-3B-Instruct-Q6_K_L", ofType: "gguf") else {
-            showError(message: "Model file not found in bundle")
-            return
+        if let model = ai?.model {
+            let initialPast = model.nPast
+            
+            while model.nPast > 5 {
+                try? model.KVShift()
+                print("KVShift: reduced nPast from \(initialPast) to \(model.nPast)")
+            }
+            
+            model.nPast = 0
+            model.outputRepeatTokens = []
+            print("Model context reset successfully using multiple KVShifts")
         }
-        
-        // Re-initialize model parameters (same as in init)
-        initializeModel()
+        isProcessing = false
     }
 }
