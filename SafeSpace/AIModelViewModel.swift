@@ -19,6 +19,10 @@ class AIModelViewModel: ObservableObject {
     
     
     init() {
+        initializeModel()
+    }
+
+    private func initializeModel() {
         // Initialize model parameters
         var params = ModelAndContextParams.default
         params.promptFormat = .Custom
@@ -63,11 +67,10 @@ class AIModelViewModel: ObservableObject {
     
     func ask(prompt: String, responseHandler: @escaping (String) -> Void, systemPrompt: String? = nil) {
         guard isModelLoaded else { return }
-        print("Prompt: \(prompt)")
-        print("Prompt length: \(prompt.count) characters")
-        if let systemPrompt = systemPrompt {
-            print("System prompt: \(systemPrompt)")
-        }
+
+        let finalPrompt = systemPrompt ?? prompt
+        print("Final prompt: \(finalPrompt)")
+        print("Prompt length: \(finalPrompt.count) characters")
         
         isProcessing = true
         DispatchQueue.global(qos: .userInitiated).async {
@@ -81,7 +84,7 @@ class AIModelViewModel: ObservableObject {
             }
             
             do {
-                try self.ai?.model?.Predict(prompt, callback, system_prompt: systemPrompt)
+                try self.ai?.model?.Predict(finalPrompt, callback)
                 if let model = self.ai?.model, model.nPast >= model.contextParams.context - 2 {
                     print("Context window nearing limit. Performing KVShift...")
                     try model.KVShift()
@@ -105,10 +108,20 @@ class AIModelViewModel: ObservableObject {
         }
     }
     func resetModel() {
-        // resetting model for clears.
+        // Reset the model by deinitializing and reinitializing
+        isProcessing = true
+        
+        // Deinitialize the current model
+        ai?.model?.destroy_objects()
+        ai = nil
+        
+        // Get model path
         guard let modelPath = Bundle.main.path(forResource: "Llama-3.2-3B-Instruct-Q6_K_L", ofType: "gguf") else {
             showError(message: "Model file not found in bundle")
             return
         }
+        
+        // Re-initialize model parameters (same as in init)
+        initializeModel()
     }
 }
